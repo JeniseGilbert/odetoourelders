@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ode To Our Elders | Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap">
+  <style>
+  
+  /*=======Default CSS=======*/
+    :root {
+      --gold: #ffb400;
+      --brown: #5c4033;
+      --sage: #9caf88;
+      --cream: #fefae0;
+      --black: #1a1a1a;
+      --cta: #3a5a40;
+      --cta-hover: #2e4a34;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: var(--black);
+    }
+
+    header {
+      background-color: var(--cream);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a.active {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .banner-section {
+      background: linear-gradient(-45deg, var(--cta), var(--sage), var(--gold));
+      background-size: 400% 400%;
+      animation: bannerShift 12s ease infinite;
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    @keyframes bannerShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo-img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--cream);
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .logo-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    footer {
+      background-color: var(--black);
+      color: var(--cream);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    
+    /*Donate Now button*/
+    .cta-button {
+  background-color: var(--cta);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--cta-hover);
+}
+
+    /*=======Default CSS end=======*/
+    
+ /*Team Member Cards*/
+ .team-section {
+      padding: 3rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .team-card {
+      background: var(--cream);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .team-card .info {
+      padding: 1rem;
+    }
+
+    .team-card .info h3 {
+      font-family: 'Playfair Display', serif;
+      margin: 0.5rem 0;
+      color: var(--brown);
+    }
+
+    .team-card .info p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .spotlight {
+      border: 2px solid var(--gold);
+    }
+    
+    .card-icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 0.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+}
+
+  </style>
+</head>
+<body>
+
+  <section style="background-color: var(--cta); color: white; text-align: center; padding: 3rem 1rem;">
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.75rem; margin: 0; letter-spacing: 1px;">MEET OUR TEAM</h1>
+  <h1>The people behind the movement</h1>
+</section>
+
+  <header>
+    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
+    <nav>
+      <a href="index.html" >Home</a>
+      <a href="elders.html">Our Elders</a>
+      <a href="letters.html" class="active">Write a Letter</a>
+      <a href="team.html">Our Team</a>
+      <a href="donate.html" class="cta-button" title="Make a financial contribution">Donate Now</a>
+    </nav>
+  </header>
+
+<section class="team-section">
+    <div class="team-grid">
+
+      <!-- President Spotlight -->
+      <div class="team-card spotlight">
+  <img src="https://img.icons8.com/ios-filled/300/5c4033/user-group-man-man.png" alt="President Photo">
+  <div class="info">
+    <h3>Steve Williams</h3>
+    <p><strong>President</strong></p>
+    <p>Founder of Ode To Our Elders, dedicated to preserving cultural legacy and elder stories.</p>
+  </div>
+</div>
+
+
+      <!-- Vice President Spotlight -->
+      <div class="team-card spotlight">
+        <img src="https://img.icons8.com/ios-filled/300/5c4033/user-group-man-man.png" alt="Vice President Photo">
+        <div class="info">
+          <h3>Courtenay Inoch</h3>
+          <p><strong>Vice President</strong></p>
+          <p>Works closely with the team to expand outreach and build community partnerships.</p>
+        </div>
+      </div>
+
+      <!-- Other Team Members -->
+      <div class="team-card">
+        <img src="https://img.icons8.com/ios-filled/300/5c4033/user-group-man-man.png" alt="Female Silhouette">
+        <div class="info">
+          <h3>Sharon Sampson</h3>
+          <p><strong>Community Engagement</strong></p>
+          <p>Helps coordinate local storytelling events and elder meetups.</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <img src="https://img.icons8.com/ios-filled/300/5c4033/user-group-man-man.png" alt="Team Member Photo">
+        <div class="info">
+          <h3>Trudy Gilbert</h3>
+          <p><strong>Volunteer Coordinator</strong></p>
+          <p>Leads our volunteer program and ensures smooth event operations.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    &copy; 2025 Ode To Our Elders. All rights reserved.
+  </footer>
+  
+<script>
+    function toggleMenu() {
+      document.querySelector('#mainNav nav').classList.toggle('show');
+    }
+
+   
+  
+
+  </script>
+</body>
+</html>
