@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Elders | Ode To Our Elders</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap" rel="stylesheet">
+  <title>Ode To Our Elders | Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap">
   <style>
+  
+  /*=======Default CSS=======*/
     :root {
       --gold: #ffb400;
       --brown: #5c4033;
@@ -18,36 +20,36 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #fff;
+      background-color: #fff;
       color: var(--black);
-      overflow-x: hidden;
     }
 
     header {
       background-color: var(--cream);
       padding: 1rem 2rem;
-      position: relative;
+      text-align: center;
     }
 
     .menu-toggle {
       display: none;
+      font-size: 1.5rem;
       background: none;
       border: none;
-      font-size: 1.8rem;
       cursor: pointer;
-      color: var(--black);
     }
 
-    #mainNav nav {
+    nav {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
       margin-top: 0.5rem;
     }
 
@@ -55,6 +57,11 @@
       text-decoration: none;
       color: var(--black);
       font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
     }
 
     nav a.active {
@@ -62,170 +69,50 @@
       border-bottom: 2px solid var(--gold);
     }
 
-    .hero {
-      background: var(--cta);
+    .banner-section {
+      background: linear-gradient(-45deg, var(--cta), var(--sage), var(--gold));
       background-size: 400% 400%;
-      animation: shift 10s ease infinite;
+      animation: bannerShift 12s ease infinite;
       color: white;
       text-align: center;
       padding: 3rem 1rem;
     }
 
-    @keyframes shift {
+    @keyframes bannerShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem 1rem 0;
-    }
-
-    .filter-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .filter-btn,
-    #countryFilter {
-      background: var(--gold);
-      border: none;
-      color: var(--black);
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-align: center;
-    }
-    
-    
-  
-
-
-
-    .filter-btn:hover,
-    #countryFilter:hover {
-      background: var(--brown);
-      color: white;
-    }
-
-    #countryFilter {
-      appearance: none;
-    }
-
-    .elder-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem 1rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .elder-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: var(--cream);
-      border: 1px solid var(--sage);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-      min-height: 340px;
-      transition: transform 0.3s;
-    }
-
-    .elder-card:hover {
-      transform: scale(1.03);
-    }
-
-    .elder-card img {
-      width: 100px;
-      height: 100px;
+    .logo-img {
+      width: 500px;
+      height: 500px;
       object-fit: cover;
       border-radius: 50%;
-      border: 3px solid var(--brown);
-      margin: 0 auto 1rem;
-      display: block;
-    }
-
-    .elder-card h3 {
-      margin: 0.5rem 0;
-      color: var(--brown);
-    }
-
-    .elder-card p {
-      font-size: 0.95rem;
-      color: #333;
-    }
-
-    .read-more-btn {
-      background-color: var(--cta);
-      color: #fff;
-      padding: 0.6rem 1.5rem;
-      font-size: 0.95rem;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 1rem;
-    }
-
-    .read-more-btn:hover {
-      background-color: var(--cta-hover);
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .modal-content {
-      background: white;
-      margin: 10% auto;
-      padding: 1.5rem;
-      max-width: 500px;
-      border-radius: 10px;
-      position: relative;
-      text-align: center;
-    }
-
-    .modal-content img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 3px solid var(--brown);
       margin-bottom: 1rem;
     }
 
-    .modal-content h3 {
-      margin-top: 0;
-      color: var(--brown);
-    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
 
-    .modal-content p {
-      color: var(--black);
-    }
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--cream);
+        margin-top: 1rem;
+      }
 
-    .close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--cta);
+      nav.show {
+        display: flex;
+      }
+
+      .logo-img {
+        width: 120px;
+        height: 120px;
+      }
     }
 
     footer {
@@ -235,53 +122,79 @@
       padding: 1rem;
       font-size: 0.9rem;
     }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      #mainNav nav {
-        display: none;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      #mainNav nav.show {
-        display: flex;
-      }
-
-      .filter-bar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .filter-btn, #countryFilter {
-        width: 100%;
-      }
-      
-        /* Force all filter buttons and dropdown to center text properly */
-.filter-btn,
-#countryFilter,
-.country-select-wrapper select {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  text-align-last: center; /* Ensures last line is centered in select */
-}
-
-/* Extra help for Safari and mobile weirdness */
-#countryFilter {
-  padding-left: 0;
-  padding-right: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-    }
     
-    @media (max-width: 600px) {
+    /*=======Default CSS end=======*/
+    
+    
+    /*=======Filter=======*/
+    .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem 0;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn,
+#countryFilter {
+  background: var(--gold);
+  border: none;
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.filter-btn:hover,
+#countryFilter:hover {
+  background: var(--brown);
+  color: white;
+}
+
+#countryFilter {
+  appearance: none;
+}
+
+/*======= Mobile Filter Styling – Responsive (≤768px)=======*/
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-btn,
+  #countryFilter {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-align-last: center; /* center align selected option text */
+  }
+
+  #countryFilter {
+    padding-left: 0;
+    padding-right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+
+/* Mobile Filter Extra Mobile Optimization (≤600px)*/
+
+@media (max-width: 600px) {
   .filter-bar {
     flex-direction: column;
     align-items: center;
@@ -310,29 +223,184 @@
     justify-content: center;
     text-align: center;
   }
-  
-  .filter-btn, #countryFilter {
-        width: 100%;
-      }
+
+  .filter-btn,
+  #countryFilter {
+    width: 100%;
+  }
 }
 
 
-/*hero*/
+.country-select-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-.hero h1 {
+
+/*Elder Grid*/
+.elder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+/*Elder Card*/
+.elder-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--cream);
+  border: 1px solid var(--sage);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  min-height: 340px;
+  transition: transform 0.3s;
+}
+
+.elder-card:hover {
+  transform: scale(1.03);
+}
+
+.elder-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--brown);
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+.elder-card h3 {
+  margin: 0.5rem 0;
+  color: var(--brown);
+}
+
+.elder-card p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+
+/*Modal*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+
+/*Modal content*/
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 1.5rem;
+  max-width: 500px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.modal-content img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--brown);
+  margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: var(--brown);
+}
+
+.modal-content p {
+  color: var(--black);
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--cta);
+}
+
+/*modal mobile*/
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    margin-top: 25%;
+    padding: 1rem;
+  }
+
+  .elder-card {
+    min-height: auto;
+  }
+}
+
+/*Read More*/
+.read-more-btn {
+      background-color: var(--cta);
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .read-more-btn:hover {
+      background-color: var(--cta-hover);
+    }
+
+
+/*In loving memory section*/
+.in-memory-heading {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--brown);
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem; /* Match home page size */
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.elder-card[data-status="remembered"] {
+  box-shadow: 0 0 10px rgba(255, 180, 0, 0.3);
+  border: 2px solid var(--gold);
+}
+
+.in-memory-section {
+  background-color: #fffaf0;
+  padding-top: 2rem;
 }
 
 
+/*In loving memory mobile */
+@media (max-width: 600px) {
+  .in-memory-heading {
+    font-size: 1.5rem;
+  }
+}
 
-
+    
   </style>
 </head>
-
 <body>
 
   <section style="background-color: var(--cta); color: white; text-align: center; padding: 3rem 1rem;">
@@ -341,43 +409,65 @@
 </section>
 
   <header>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <div id="mainNav">
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="elders.html" class="active">Our Elders</a>
-        <a href="letters.html">Write a Letter</a>
-        <a href="donate.html">Donate</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
+    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
+    <nav>
+      <a href="index.html" >Home</a>
+      <a href="elders.html" class="active">Our Elders</a>
+      <a href="letters.html">Write a Letter</a>
+      <a href="about.html">About</a>
+      <a href="donate.html" class="cta-button" title="Make a financial contribution">Donate Now</a>
+    </nav>
   </header>
 
-  
+<!--Filter-->
 
-  <section class="filter-bar">
+<section class="filter-bar">
     <div class="filter-group">
       <button class="filter-btn" onclick="filterElders('all')">All</button>
       <button class="filter-btn" onclick="filterElders('living')">Living</button>
       <button class="filter-btn" onclick="filterElders('remembered')">Remembered</button>
     </div>
+    
+  <select id="countryFilter" onchange="filterByCountry()" class="filter-btn">
+  <option value="all" style="text-align: center">🌍 All Countries</option>
+  <option value="Anguilla" data-flag="https://flagcdn.com/w40/ai.png">🇦🇮 Anguilla</option>
+  <option value="Antigua" data-flag="https://flagcdn.com/w40/ag.png">🇦🇬 Antigua and Barbuda</option>
+  <option value="Aruba" data-flag="https://flagcdn.com/w40/aw.png">🇦🇼 Aruba</option>
+  <option value="Bahamas" data-flag="https://flagcdn.com/w40/bs.png">🇧🇸 Bahamas</option>
+  <option value="Barbados" data-flag="https://flagcdn.com/w40/bb.png">🇧🇧 Barbados</option>
+  <option value="Belize" data-flag="https://flagcdn.com/w40/bz.png">🇧🇿 Belize</option>
+  <option value="Bermuda" data-flag="https://flagcdn.com/w40/bm.png">🇧🇲 Bermuda</option>
+  <option value="Bonaire" data-flag="https://flagcdn.com/w40/bq.png">🇧🇶 Bonaire</option>
+  <option value="British Virgin Islands" data-flag="https://flagcdn.com/w40/vg.png">🇻🇬 British Virgin Islands</option>
+  <option value="Cayman Islands" data-flag="https://flagcdn.com/w40/ky.png">🇰🇾 Cayman Islands</option>
+  <option value="Cuba" data-flag="https://flagcdn.com/w40/cu.png">🇨🇺 Cuba</option>
+  <option value="Curaçao" data-flag="https://flagcdn.com/w40/cw.png">🇨🇼 Curaçao</option>
+  <option value="Dominica" data-flag="https://flagcdn.com/w40/dm.png">🇩🇲 Dominica</option>
+  <option value="Dominican Republic" data-flag="https://flagcdn.com/w40/do.png">🇩🇴 Dominican Republic</option>
+  <option value="Grenada" data-flag="https://flagcdn.com/w40/gd.png">🇬🇩 Grenada</option>
+  <option value="Guadeloupe" data-flag="https://flagcdn.com/w40/gp.png">🇬🇵 Guadeloupe</option>
+  <option value="Guyana" data-flag="https://flagcdn.com/w40/gy.png">🇬🇾 Guyana</option>
+  <option value="Haiti" data-flag="https://flagcdn.com/w40/ht.png">🇭🇹 Haiti</option>
+  <option value="Jamaica" data-flag="https://flagcdn.com/w40/jm.png">🇯🇲 Jamaica</option>
+  <option value="Martinique" data-flag="https://flagcdn.com/w40/mq.png">🇲🇶 Martinique</option>
+  <option value="Montserrat" data-flag="https://flagcdn.com/w40/ms.png">🇲🇸 Montserrat</option>
+  <option value="Puerto Rico" data-flag="https://flagcdn.com/w40/pr.png">🇵🇷 Puerto Rico</option>
+  <option value="Saint Barthélemy" data-flag="https://flagcdn.com/w40/bl.png">🇧🇱 Saint Barthélemy</option>
+  <option value="Saint Kitts and Nevis" data-flag="https://flagcdn.com/w40/kn.png">🇰🇳 Saint Kitts and Nevis</option>
+  <option value="Saint Lucia" data-flag="https://flagcdn.com/w40/lc.png">🇱🇨 Saint Lucia</option>
+  <option value="Saint Vincent and the Grenadines" data-flag="https://flagcdn.com/w40/vc.png">🇻🇨 Saint Vincent and the Grenadines</option>
+  <option value="Sint Maarten" data-flag="https://flagcdn.com/w40/sx.png">🇸🇽 Sint Maarten</option>
+  <option value="Suriname" data-flag="https://flagcdn.com/w40/sr.png">🇸🇷 Suriname</option>
+  <option value="Trinidad and Tobago" data-flag="https://flagcdn.com/w40/tt.png">🇹🇹 Trinidad and Tobago</option>
+  <option value="Turks and Caicos Islands" data-flag="https://flagcdn.com/w40/tc.png">🇹🇨 Turks and Caicos Islands</option>
+  <option value="Virgin Islands" data-flag="https://flagcdn.com/w40/vi.png">🇻🇮 Virgin Islands</option>
+</select>
+</section>
 
-    <select id="countryFilter" onchange="filterByCountry()" class="filter-btn">
-      <option value="all" style="text-align: center">🌍 All Countries</option>
-      <option value="Dominica" data-flag="https://flagcdn.com/w40/dm.png">🇩🇲 Dominica</option>
-    <option value="Jamaica" data-flag="https://flagcdn.com/w40/jm.png">🇯🇲 Jamaica</option>
-    <option value="St. Lucia" data-flag="https://flagcdn.com/w40/lc.png">🇱🇨 St. Lucia</option>
-    <option value="Trinidad" data-flag="https://flagcdn.com/w40/tt.png">🇹🇹 Trinidad</option>
-    <option value="Virgin Islands" data-flag="https://flagcdn.com/w40/vi.png">🇻🇮 Virgin Islands</option>
-    </select>
-  </section>
-  
-  
-
-
-  <section class="elder-grid">
+<!--Modal Grid/Card/content-->
+<section class="elder-grid">
     <!-- Elder 1 -->
-    <div class="elder-card" data-status="living" data-country="St. Lucia">
+    <div class="elder-card" data-status="living" data-country="Saint Lucia">
       <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Gloria Charles">
       <h3>Gloria Charles</h3>
       <p>"I came from St. Lucia in 1965..."</p>
@@ -394,7 +484,7 @@
     </div>
     
     <!-- Elder 2 -->
-  <div class="elder-card" data-status="living" data-country="Trinidad">
+  <div class="elder-card" data-status="living" data-country="Trinidad and Tobago">
 
     <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Elder man silhouette">
     <h3>Samuel Thompson</h3>
@@ -485,12 +575,11 @@
     <p>"I was a calypso DJ in Miami in the ’80s. My radio show helped Caribbean people feel at home again."</p>
   </div>
 </div>
-    
-    
-    
   </section>
 
-  <!-- In Loving Memory Section -->
+
+
+<!-- In Loving Memory Section -->
   <section class="elder-grid" style="background-color: #fffaf0; padding-top: 2rem;">
     <h2 style="grid-column: 1 / -1; text-align: center; color: var(--brown); font-family: 'Playfair Display', serif;">In Loving Memory</h2>
 
@@ -512,7 +601,7 @@
   </div>
 
 <!-- Spotlight Elder 2 -->
-<div class="elder-card" data-status="remembered" data-country="jamaica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+<div class="elder-card" data-status="remembered" data-country="Jamaica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
   <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Elder silhouette">
   <h3>🕯️ Agatha Charles</h3>
   <p>"She came from Jamaica in the 1970s and was known for baking for every neighborhood event."</p>
@@ -531,7 +620,7 @@
 
 
 <!-- Spotlight Elder 3 -->
-<div class="elder-card" data-status="remembered" data-country="st-lucia" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+<div class="elder-card" data-status="remembered" data-country="Saint lucia" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
   <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Elder silhouette">
   <h3>🕯️ George Emmanuel</h3>
   <p>"A fisherman from St. Lucia who taught youth how to navigate the waters — and life."</p>
@@ -550,7 +639,7 @@
 
 
 <!-- Spotlight Elder 4 -->
-<div class="elder-card" data-status="remembered" data-country="dominica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+<div class="elder-card" data-status="remembered" data-country="Dominica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
   <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Elder silhouette">
   <h3>🕯️ Celina Francois</h3>
   <p>"Moved from Dominica in 1962. She helped start the Caribbean Cultural Center in her city."</p>
@@ -569,11 +658,12 @@
 
 </section>
 
+
   <footer>
     &copy; 2025 Ode To Our Elders. All rights reserved.
   </footer>
-
-  <script>
+  
+<script>
     function toggleMenu() {
       document.querySelector('#mainNav nav').classList.toggle('show');
     }
@@ -613,6 +703,5 @@
       filterElders('all');
     }
   </script>
-
 </body>
 </html>
