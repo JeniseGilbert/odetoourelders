@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ode To Our Elders | Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap">
+  <style>
+  
+  /*=======Default CSS=======*/
+    :root {
+      --gold: #ffb400;
+      --brown: #5c4033;
+      --sage: #9caf88;
+      --cream: #fefae0;
+      --black: #1a1a1a;
+      --cta: #3a5a40;
+      --cta-hover: #2e4a34;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: var(--black);
+    }
+
+    header {
+      background-color: var(--cream);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a.active {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .banner-section {
+      background: linear-gradient(-45deg, var(--cta), var(--sage), var(--gold));
+      background-size: 400% 400%;
+      animation: bannerShift 12s ease infinite;
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    @keyframes bannerShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo-img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--cream);
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .logo-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    footer {
+      background-color: var(--black);
+      color: var(--cream);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    
+    /*Donate Now button*/
+    .cta-button {
+  background-color: var(--cta);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--cta-hover);
+}
+
+    /*=======Default CSS end=======*/
+    
+    /*letter styling*/
+   .letter-form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--cream);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.letter-form-container h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--brown);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.letter-form-container p {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#letterForm label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+#letterForm input,
+#letterForm select,
+#letterForm textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.thank-you-msg {
+  display: none;
+  text-align: center;
+  color: var(--cta);
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .letter-form-container {
+    padding: 1rem;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <section style="background-color: var(--cta); color: white; text-align: center; padding: 3rem 1rem;">
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.75rem; margin: 0; letter-spacing: 1px;">SEND A LETTER OF LOVE</h1>
+  <h1>Your message can inspire, uplift, and connect generations</h1>
+</section>
+
+  <header>
+    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
+    <nav>
+      <a href="index.html" >Home</a>
+      <a href="elders.html">Our Elders</a>
+      <a href="letters.html" class="active">Write a Letter</a>
+      <a href="about.html">About</a>
+      <a href="donate.html" class="cta-button" title="Make a financial contribution">Donate Now</a>
+    </nav>
+  </header>
+
+<main class="letter-form-container">
+  <h2>Write a Letter to an Elder</h2>
+  <p>Your kind words can uplift an elder’s heart. Share your message below!</p>
+
+  <form id="letterForm">
+    <label for="name">Your Name*</label>
+    <input type="text" id="name" name="name" required placeholder="Jane Doe">
+
+    <label for="elder">Elder's Name (optional)</label>
+      <input type="text" id="elder" name="elder" placeholder="Elder Samuel">
+
+    <label for="message">Your Message*</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <label for="fileUpload">Upload a photo or letter file (JPG, PNG, PDF)</label>
+    <input type="file" id="fileUpload" name="fileUpload" accept=".jpg,.jpeg,.png,.pdf">
+
+    <button type="submit" class="cta-button">Send Letter</button>
+  </form>
+
+  <p id="thankYouMsg" class="thank-you-msg">Thank you for your message! ❤️</p>
+</main>
+
+
+
+
+  <footer>
+    &copy; 2025 Ode To Our Elders. All rights reserved.
+  </footer>
+  
+<script>
+    function toggleMenu() {
+      document.querySelector('#mainNav nav').classList.toggle('show');
+    }
+
+   
+  document.getElementById("letterForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // Example submission placeholder
+    document.getElementById("letterForm").style.display = "none";
+    document.getElementById("thankYouMsg").style.display = "block";
+
+    // Optional: Add your fetch/Google Apps Script call here
+  });
+
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxN9q7wt_qbDto7zC3bRWR8sg6SG81XV7teAWizmRlwp3r0pM2bP-4NSD1W7VsXt5fa/exec';
+  const IMGUR_CLIENT_ID = '391a97dd9adbc0b';
+
+  document.getElementById("letterForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const elder = document.getElementById("elder").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const file = document.getElementById("fileUpload").files[0];
+
+    let imageURL = "";
+    if (file) {
+      const formData = new FormData();
+      formData.append("image", file);
+      const uploadRes = await fetch("https://api.imgur.com/3/image", {
+        method: "POST",
+        headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` },
+        body: formData
+      });
+      const json = await uploadRes.json();
+      imageURL = json.data.link || "";
+    }
+
+    const formPayload = new FormData();
+    formPayload.append("name", name);
+    formPayload.append("elder", elder);
+    formPayload.append("message", message);
+    formPayload.append("imageURL", imageURL);
+
+    fetch(scriptURL, { method: "POST", body: formPayload })
+      .then(() => {
+        document.getElementById("letterForm").style.display = "none";
+        document.getElementById("thankYouMsg").style.display = "block";
+      })
+      .catch(err => alert("Something went wrong. Please try again."));
+  });
+
+  </script>
+</body>
+</html>
