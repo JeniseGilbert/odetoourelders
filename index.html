@@ -179,6 +179,7 @@ nav a.active {
 </head>
 <section style="background-color: var(--cta); color: white; text-align: center; padding: 3rem 1rem;">
   <h1 style="font-family: 'Playfair Display', serif; font-size: 2.75rem; margin: 0; letter-spacing: 1px;">ODE TO OUR ELDERS</h1>
+  <h1>Honoring Our Roots. Celebrating Our Legacy.</h1>
 </section>
 <header>
     <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
@@ -194,7 +195,236 @@ nav a.active {
 
 
 <section class="banner-section">
+  
+  <img src="https://imgur.com/NRWZ2CN.png" alt="Ode To Our Elders logo" class="logo-img">
+</section>
+
+
+
+
+  
+
+  <section class="mission-section">
+    <h2>Our Mission</h2>
+    <p>We are committed to uplifting the voices of our elders by creating a space where their stories, sacrifices, and dreams are shared, valued, and remembered. Through storytelling, youth engagement, and digital archives, we aim to build bridges between generations.</p>
+    <a href="elders.html" class="cta-button">Meet Our Elders</a>
+  </section>
+
+  <section class="impact-section">
+    <h2>Our Impact</h2>
+    <p>From letters of love and appreciation to community events and storytelling workshops, our programs have reached hundreds of elders and youth across states. Every message, donation, and volunteer hour strengthens our mission.</p>
+    <a href="letters.html" class="cta-button">Write a Letter</a>
+  </section>
+
+  <section class="get-involved-section">
+    <h2>Get Involved</h2>
+    <p>Join us in honoring elders. Write a heartfelt letter, volunteer your time, or donate to support our initiatives. Together, we can preserve legacies and inspire future generations.</p>
+    <a href="donate.html" class="cta-button">Donate Now</a>
+  </section>
+
+  <footer>
+    &copy; 2025 Ode To Our Elders. All rights reserved.
+  </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ode To Our Elders | Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap">
+  <style>
+    :root {
+      --gold: #ffb400;
+      --brown: #5c4033;
+      --sage: #9caf88;
+      --cream: #fefae0;
+      --black: #1a1a1a;
+      --cta: #3a5a40;
+      --cta-hover: #2e4a34;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: var(--black);
+    }
+
+    header {
+      background-color: var(--cream);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+    
+nav a.active {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+.banner-section {
+  background: linear-gradient(-45deg, var(--cta), var(--sage), var(--gold));
+  background-size: 400% 400%;
+  animation: bannerShift 12s ease infinite;
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+@keyframes bannerShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+    .about-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(to right, var(--sage), var(--cream));
+    }
+
+    .about-section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--brown);
+      margin-bottom: 1rem;
+    }
+
+    .about-section p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .logo-img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 50%;
+
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  .logo-img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+    .mission-section, .impact-section, .get-involved-section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .mission-section h2, .impact-section h2, .get-involved-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--brown);
+    }
+
+    .mission-section p, .impact-section p, .get-involved-section p {
+      font-size: 1rem;
+      max-width: 750px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .cta-button {
+      background-color: var(--cta);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background-color: var(--cta-hover);
+    }
+
+    footer {
+      background-color: var(--black);
+      color: var(--cream);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--cream);
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<section style="background-color: var(--cta); color: white; text-align: center; padding: 3rem 1rem;">
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.75rem; margin: 0; letter-spacing: 1px;">ODE TO OUR ELDERS</h1>
   <h1>Honoring Our Roots. Celebrating Our Legacy.</h1>
+</section>
+<header>
+    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="elders.html">Our Elders</a>
+      <a href="letters.html">Write a Letter</a>
+      <a href="about.html">About</a>
+      
+      <a href="donate.html" class="cta-button" title="Make a financial contribution">Donate Now</a>
+    </nav>
+  </header>
+
+
+<section class="banner-section">
+  
   <img src="https://imgur.com/NRWZ2CN.png" alt="Ode To Our Elders logo" class="logo-img">
 </section>
 
