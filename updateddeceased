@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ode To Our Elders | Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap">
+  <style>
+  
+  /*=======Default CSS=======*/
+    :root {
+      --gold: #ffb400;
+      --brown: #5c4033;
+      --sage: #9caf88;
+      --cream: #fefae0;
+      --black: #1a1a1a;
+      --cta: #3a5a40;
+      --cta-hover: #2e4a34;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: var(--black);
+    }
+
+    header {
+      background-color: var(--cream);
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a.active {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .banner-section {
+      background: linear-gradient(-45deg, var(--cta), var(--sage), var(--gold));
+      background-size: 400% 400%;
+      animation: bannerShift 12s ease infinite;
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+
+    @keyframes bannerShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo-img {
+      width: 500px;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--cream);
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .logo-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
+
+    footer {
+      background-color: var(--black);
+      color: var(--cream);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .cta-button {
+  background-color: var(--cta);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--cta-hover);
+}
+    /*=======Default CSS end=======*/
+    
+    
+    /*=======Filter=======*/
+    .filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem 0;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn,
+#countryFilter {
+  background: var(--gold);
+  border: none;
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.filter-btn:hover,
+#countryFilter:hover {
+  background: var(--brown);
+  color: white;
+}
+
+#countryFilter {
+  appearance: none;
+}
+
+/*======= Mobile Filter Styling – Responsive (≤768px)=======*/
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-btn,
+  #countryFilter {
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    text-align-last: center; /* center align selected option text */
+  }
+
+  #countryFilter {
+    padding-left: 0;
+    padding-right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+
+/* Mobile Filter Extra Mobile Optimization (≤600px)*/
+
+@media (max-width: 600px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .filter-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-btn,
+  #countryFilter {
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .country-select-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .filter-btn,
+  #countryFilter {
+    width: 100%;
+  }
+}
+
+
+.country-select-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+/*Elder Grid*/
+.elder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+/*Elder Card*/
+.elder-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--cream);
+  border: 1px solid var(--sage);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  min-height: 340px;
+  transition: transform 0.3s;
+}
+
+.elder-card:hover {
+  transform: scale(1.03);
+}
+
+.elder-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--brown);
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+.elder-card h3 {
+  margin: 0.5rem 0;
+  color: var(--brown);
+}
+
+.elder-card p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+
+/*Modal*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+
+/*Modal content*/
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 1.5rem;
+  max-width: 500px;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.modal-content img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--brown);
+  margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: var(--brown);
+}
+
+.modal-content p {
+  color: var(--black);
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--cta);
+}
+
+/*modal mobile*/
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    margin-top: 25%;
+    padding: 1rem;
+  }
+
+  .elder-card {
+    min-height: auto;
+  }
+}
+
+/*Read More*/
+.read-more-btn {
+      background-color: var(--cta);
+      color: #fff;
+      padding: 0.6rem 1.5rem;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .read-more-btn:hover {
+      background-color: var(--cta-hover);
+    }
+
+
+/*In loving memory section*/
+.in-memory-heading {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--brown);
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.elder-card[data-status="remembered"] {
+  box-shadow: 0 0 10px rgba(255, 180, 0, 0.3);
+  border: 2px solid var(--gold);
+}
+
+.in-memory-section {
+  background-color: #fffaf0;
+  padding-top: 2rem;
+}
+
+
+/*In loving memory mobile */
+@media (max-width: 600px) {
+  .in-memory-heading {
+    font-size: 1.5rem;
+  }
+}
+
+    
+  </style>
+</head>
+<body>
+
+  <section style="background-color: var(--cta); color: white; text-align: center; padding: 3rem 1rem;">
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.75rem; margin: 0; letter-spacing: 1px;">MEET OUR ELDERS</h1>
+  <h1>Honoring stories of resilience, migration, and legacy.</h1>
+</section>
+
+  <header>
+    <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('show')">☰</button>
+    <nav>
+      <a href="index.html" >Home</a>
+      <a href="elders.html" class="active">Our Elders</a>
+      <a href="letters.html">Write a Letter</a>
+      <a href="team.html">Our Team</a>
+      <a href="events.html">Events & Memories</a>
+      <a href="contact.html">Get Involved</a>
+      <a href="donate.html" class="cta-button" title="Make a financial contribution">Donate Now</a>
+    </nav>
+  </header>
+
+<!--Filter-->
+
+<section class="filter-bar">
+    <div class="filter-group">
+      <button class="filter-btn" onclick="filterElders('all')">All</button>
+      <button class="filter-btn" onclick="filterElders('living')">Living</button>
+      <button class="filter-btn" onclick="filterElders('remembered')">Remembered</button>
+    </div>
+    
+  <select id="countryFilter" onchange="filterByCountry()" class="filter-btn">
+  <option value="all" style="text-align: center">🌍 All Countries</option>
+  <option value="Anguilla" data-flag="https://flagcdn.com/w40/ai.png">🇦🇮 Anguilla</option>
+  <option value="Antigua" data-flag="https://flagcdn.com/w40/ag.png">🇦🇬 Antigua and Barbuda</option>
+  <option value="Aruba" data-flag="https://flagcdn.com/w40/aw.png">🇦🇼 Aruba</option>
+  <option value="Bahamas" data-flag="https://flagcdn.com/w40/bs.png">🇧🇸 Bahamas</option>
+  <option value="Barbados" data-flag="https://flagcdn.com/w40/bb.png">🇧🇧 Barbados</option>
+  <option value="Belize" data-flag="https://flagcdn.com/w40/bz.png">🇧🇿 Belize</option>
+  <option value="Bermuda" data-flag="https://flagcdn.com/w40/bm.png">🇧🇲 Bermuda</option>
+  <option value="Bonaire" data-flag="https://flagcdn.com/w40/bq.png">🇧🇶 Bonaire</option>
+  <option value="British Virgin Islands" data-flag="https://flagcdn.com/w40/vg.png">🇻🇬 British Virgin Islands</option>
+  <option value="Cayman Islands" data-flag="https://flagcdn.com/w40/ky.png">🇰🇾 Cayman Islands</option>
+  <option value="Cuba" data-flag="https://flagcdn.com/w40/cu.png">🇨🇺 Cuba</option>
+  <option value="Curaçao" data-flag="https://flagcdn.com/w40/cw.png">🇨🇼 Curaçao</option>
+  <option value="Dominica" data-flag="https://flagcdn.com/w40/dm.png">🇩🇲 Dominica</option>
+  <option value="Dominican Republic" data-flag="https://flagcdn.com/w40/do.png">🇩🇴 Dominican Republic</option>
+  <option value="Grenada" data-flag="https://flagcdn.com/w40/gd.png">🇬🇩 Grenada</option>
+  <option value="Guadeloupe" data-flag="https://flagcdn.com/w40/gp.png">🇬🇵 Guadeloupe</option>
+  <option value="Guyana" data-flag="https://flagcdn.com/w40/gy.png">🇬🇾 Guyana</option>
+  <option value="Haiti" data-flag="https://flagcdn.com/w40/ht.png">🇭🇹 Haiti</option>
+  <option value="Jamaica" data-flag="https://flagcdn.com/w40/jm.png">🇯🇲 Jamaica</option>
+  <option value="Martinique" data-flag="https://flagcdn.com/w40/mq.png">🇲🇶 Martinique</option>
+  <option value="Montserrat" data-flag="https://flagcdn.com/w40/ms.png">🇲🇸 Montserrat</option>
+  <option value="Puerto Rico" data-flag="https://flagcdn.com/w40/pr.png">🇵🇷 Puerto Rico</option>
+  <option value="Saint Barthélemy" data-flag="https://flagcdn.com/w40/bl.png">🇧🇱 Saint Barthélemy</option>
+  <option value="Saint Kitts and Nevis" data-flag="https://flagcdn.com/w40/kn.png">🇰🇳 Saint Kitts and Nevis</option>
+  <option value="Saint Lucia" data-flag="https://flagcdn.com/w40/lc.png">🇱🇨 Saint Lucia</option>
+  <option value="Saint Vincent and the Grenadines" data-flag="https://flagcdn.com/w40/vc.png">🇻🇨 Saint Vincent and the Grenadines</option>
+  <option value="Sint Maarten" data-flag="https://flagcdn.com/w40/sx.png">🇸🇽 Sint Maarten</option>
+  <option value="Suriname" data-flag="https://flagcdn.com/w40/sr.png">🇸🇷 Suriname</option>
+  <option value="Trinidad and Tobago" data-flag="https://flagcdn.com/w40/tt.png">🇹🇹 Trinidad and Tobago</option>
+  <option value="Turks and Caicos Islands" data-flag="https://flagcdn.com/w40/tc.png">🇹🇨 Turks and Caicos Islands</option>
+  <option value="Virgin Islands" data-flag="https://flagcdn.com/w40/vi.png">🇻🇮 Virgin Islands</option>
+</select>
+</section>
+
+<!--Modal Grid/Card/content-->
+<section class="elder-grid">
+    <!-- Elder 1 -->
+    <div class="elder-card" data-status="Deceased" data-country="Trinidad">
+      <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Joseph Alfred">
+      <h3>Joseph "Scrapey" Alfred</h3>
+      <p></p>
+      <button class="read-more-btn" onclick="openModal('Joseph')">Read More</button>
+    </div>
+
+    <div id="modal-Joseph" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('Joseph')">&times;</span>
+        <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Joseph Alfred">
+        <h3>Joseph "Scrapey" Alfred</h3>
+        <p>"..."</p>
+      </div>
+    </div>
+    
+    <!-- Elder 2 -->
+  <div class="elder-card" data-status="living" data-country="Trinidad and Tobago">
+
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Elder man silhouette">
+    <h3>Samuel Thompson</h3>
+    <p>"Every Sunday, I’d cook for the block..."</p>
+    <button class="read-more-btn" onclick="openModal('samuel')">Read More</button>
+  </div>
+  
+  <!-- Modal: Samuel -->
+<div id="modal-samuel" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('samuel')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Samuel Thompson">
+    <h3>Samuel Thompson</h3>
+    <p>"Every Sunday, I’d cook for the whole block. That’s how you build a village. I made sure everyone had a plate, even when I barely had enough."</p>
+  </div>
+</div>
+
+  <!-- Elder 3 -->
+  <div class="elder-card" data-status="living" data-country="Jamaica">
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Elder woman silhouette">
+    <h3>Merle Baptiste</h3>
+    <p>"I ran a corner store in Brooklyn..."</p>
+    <button class="read-more-btn" onclick="openModal('merle')">Read More</button>
+  </div>
+  
+  <!-- Modal: Merle -->
+<div id="modal-merle" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('merle')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Merle Baptiste">
+    <h3>Merle Baptiste</h3>
+    <p>"I ran a corner store in Brooklyn. I knew every family on the block by name. That store was more than business — it was community."</p>
+  </div>
+</div>
+
+  <!-- Elder 4 -->
+  <div class="elder-card" data-status="living" data-country="Bahamas">
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Elder man silhouette">
+    <h3>Alvin George</h3>
+    <p>"I joined a union to protect others..."</p>
+    <button class="read-more-btn" onclick="openModal('alvin')">Read More</button>
+  </div>
+  
+  <!-- Modal: Alvin -->
+<div id="modal-alvin" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('alvin')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Alvin George">
+    <h3>Alvin George</h3>
+    <p>"I joined a union to protect immigrant workers. I helped people like my father get fair pay and respect in the workplace."</p>
+  </div>
+</div>
+
+  <!-- Elder 5 -->
+  <div class="elder-card" data-status="living" data-country="Dominica">
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Elder woman silhouette">
+    <h3>Lorna Williams</h3>
+    <p>"I taught generations of children..."</p>
+    <button class="read-more-btn" onclick="openModal('lorna')">Read More</button>
+  </div>
+  
+  <!-- Modal: Lorna -->
+<div id="modal-lorna" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('lorna')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Lorna Williams">
+    <h3>Lorna Williams</h3>
+    <p>"I taught generations of children in Queens. Some of my students are now teachers themselves. That’s my legacy."</p>
+  </div>
+</div>
+
+
+  <!-- Elder 6 -->
+<div class="elder-card" data-status="living" data-country="Virgin Islands">
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Elder man silhouette">
+    <h3>Patrick Joseph</h3>
+    <p>"I was a calypso DJ in Miami..."</p>
+    <button class="read-more-btn" onclick="openModal('patrick')">Read More</button>
+  </div>
+
+
+<!-- Modal: Patrick -->
+<div id="modal-patrick" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('patrick')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Patrick Joseph">
+    <h3>Patrick Joseph</h3>
+    <p>"I was a calypso DJ in Miami in the ’80s. My radio show helped Caribbean people feel at home again."</p>
+  </div>
+</div>
+  </section>
+
+
+
+<!-- In Loving Memory Section -->
+  <section class="elder-grid" style="background-color: #fffaf0; padding-top: 2rem;">
+    <h2 style="grid-column: 1 / -1; text-align: center; color: var(--brown); font-family: 'Playfair Display', serif;">In Loving Memory</h2>
+
+    <div class="elder-card" data-status="remembered" data-country="Dominica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+      <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Papa Joe">
+      <h3>🕯️ Joseph “Papa Joe” Ferdinand</h3>
+      <p>"Moved from Dominica in 1958. He was the neighborhood's storyteller and everyone's grandfather."</p>
+      <button class="read-more-btn" onclick="openModal('papa')">Read Tribute</button>
+    </div>
+  
+
+  <div id="modal-papa" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('papa')">&times;</span>
+      <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Papa Joe">
+      <h3>Joseph “Papa Joe” Ferdinand 🕯️</h3>
+      <p>"Papa Joe came to New York from Dominica in 1958. He was a steelpan musician, a grandfather to all, and the wise man who ended every block party with a prayer. He passed in 2023, but his stories still echo in our hearts."</p>
+    </div>
+  </div>
+
+<!-- Spotlight Elder 2 -->
+<div class="elder-card" data-status="remembered" data-country="Jamaica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+  <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Elder silhouette">
+  <h3>🕯️ Agatha Charles</h3>
+  <p>"She came from Jamaica in the 1970s and was known for baking for every neighborhood event."</p>
+  <button class="read-more-btn" onclick="openModal('agatha')">Read Tribute</button>
+</div>
+
+<!-- Modal: Agatha -->
+<div id="modal-agatha" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('agatha')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Agatha Charles">
+    <h3>Agatha Charles 🕯️</h3>
+    <p>Agatha migrated from Jamaica in the early 1970s. She became everyone's grandmother, delivering fresh baked coconut bread to every school fundraiser and block gathering. Her recipes live on through her daughters and neighbors.</p>
+  </div>
+</div>
+
+
+<!-- Spotlight Elder 3 -->
+<div class="elder-card" data-status="remembered" data-country="Saint lucia" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+  <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="Elder silhouette">
+  <h3>🕯️ George Emmanuel</h3>
+  <p>"A fisherman from St. Lucia who taught youth how to navigate the waters — and life."</p>
+  <button class="read-more-btn" onclick="openModal('george')">Read Tribute</button>
+</div>
+
+<!-- Modal: George -->
+<div id="modal-george" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('george')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-male-circle.png" alt="George Emmanuel">
+    <h3>George Emmanuel 🕯️</h3>
+    <p>George was a fisherman from the coast of St. Lucia. He migrated in 1967 and became a mentor to many Caribbean youth. He taught them discipline, survival, and how to give back.</p>
+  </div>
+</div>
+
+
+<!-- Spotlight Elder 4 -->
+<div class="elder-card" data-status="remembered" data-country="Dominica" style="box-shadow: 0 0 10px rgba(255,180,0,0.3); border: 2px solid var(--gold);">
+  <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Elder silhouette">
+  <h3>🕯️ Celina Francois</h3>
+  <p>"Moved from Dominica in 1962. She helped start the Caribbean Cultural Center in her city."</p>
+  <button class="read-more-btn" onclick="openModal('celina')">Read Tribute</button>
+</div>
+
+<!-- Modal: Celina -->
+<div id="modal-celina" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('celina')">&times;</span>
+    <img src="https://img.icons8.com/ios-filled/100/5c4033/user-female-circle.png" alt="Celina Francois">
+    <h3>Celina Francois 🕯️</h3>
+    <p>Celina came from Dominica in 1962. She founded a Caribbean cultural nonprofit that helped new immigrants adjust to U.S. life through support groups, dance, and food. Her legacy lives in the center she built.</p>
+  </div>
+</div>
+
+</section>
+
+
+  <footer>
+    &copy; 2025 Ode To Our Elders. All rights reserved.
+  </footer>
+  
+<script>
+    function toggleMenu() {
+      document.querySelector('#mainNav nav').classList.toggle('show');
+    }
+
+    function openModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (modal) modal.style.display = 'block';
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (modal) modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+      }
+    };
+
+    function filterElders(type) {
+      const cards = document.querySelectorAll('.elder-card');
+      const selectedCountry = document.getElementById('countryFilter').value.toLowerCase();
+
+      cards.forEach(card => {
+        const status = card.getAttribute('data-status');
+        const country = card.getAttribute('data-country').toLowerCase();
+
+        const matchesType = type === 'all' || status === type;
+        const matchesCountry = selectedCountry === 'all' || country === selectedCountry;
+
+        card.style.display = matchesType && matchesCountry ? 'flex' : 'none';
+      });
+    }
+
+    function filterByCountry() {
+      filterElders('all');
+    }
+  </script>
+</body>
+</html>
