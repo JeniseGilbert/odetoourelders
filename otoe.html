@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Gratitude Gathering — Ode To Our Elders</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display&display=swap">
+<style>
+:root{
+  --gold:#ffb400; --brown:#5c4033; --sage:#9caf88; --cream:#fefae0; --black:#1a1a1a;
+  --cta:#3a5a40; --cta-hover:#2e4a34;
+  --checked-bg:#e9f5ec; --checked-border:#cfe9d6;
+  --toolsH: 64px;
+}
+
+/* Base */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;color:var(--black);background:#fff}
+a{color:inherit}
+header{background:var(--cream);padding:1rem 1.25rem}
+header a{font-weight:600;text-decoration:none}
+.hero{background:linear-gradient(135deg,var(--cta),var(--sage));color:#fff;padding:2.25rem 1.25rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:.35rem}
+.hero p{opacity:.95}
+.container{max-width:1100px;margin:0 auto;padding:1.25rem}
+
+/* Tabs */
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0 1.25rem}
+.tab{border:1px solid var(--sage);background:#fff;padding:.6rem .95rem;border-radius:10px;cursor:pointer;font-weight:600}
+.tab.active{background:var(--cta);color:#fff;border-color:var(--cta)}
+.panel{display:none}
+.panel.show{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin:1rem 0 .5rem}
+
+/* Cards (Honorees / Past) */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.card{border:1px solid var(--sage);border-radius:12px;padding:1rem;background:#fff}
+.badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;font-size:.75rem;font-weight:700}
+.badge.alive{background:#e9f5ec;color:#1d5a32;border:1px solid #cfe9d6}
+.badge.mem{background:#fff3e5;color:#6b3b00;border:1px solid #f5d2a3}
+.small{font-size:.95rem;color:#333}
+.kv{display:flex;gap:.5rem;flex-wrap:wrap;margin:.35rem 0 0}
+.kv span{background:#f6f7f8;border:1px solid #e4e6e8;border-radius:6px;padding:.2rem .5rem;font-size:.85rem}
+
+/* Tools (sticky) */
+.tools-wrap{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #eef0f2;padding:.5rem 0;margin:0 0 .75rem}
+.tools{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;max-width:1100px;margin:0 auto;padding:0 1rem}
+input[type="search"],select,button{padding:.75rem .95rem;border:1px solid #d7dbde;border-radius:12px;font:inherit}
+button.cta{background:var(--cta);color:#fff;border-color:var(--cta);font-weight:600}
+button.cta:hover{background:var(--cta-hover)}
+button.primary{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+button.ghost{background:#f6f7f8}
+button[disabled]{opacity:.6;cursor:not-allowed}
+.pill{display:inline-block;padding:.4rem .7rem;border-radius:999px;border:1px solid #e0e3e6;font-size:.85rem;background:#f6f7f8}
+
+/* Table (desktop) */
+.table-wrap{overflow:auto;border:1px solid #e6e8ea;border-radius:10px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{padding:.85rem .95rem;border-bottom:1px solid #eef0f2;text-align:left;white-space:nowrap;vertical-align:middle}
+th{background:#f9fbfb;font-weight:700;position: sticky;top: 0; z-index: 5;}
+tfoot td{font-weight:700}
+tr.checked-in{background:var(--checked-bg)}
+tr.checked-in td{border-bottom-color:var(--checked-border)}
+tr.checked-in{box-shadow:inset 4px 0 0 0 var(--checked-border)}
+input.cin{width:24px;height:24px}
+tr.highlight{animation:flash 1.4s ease}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(58,90,64,.0)}30%{box-shadow:0 0 0 6px rgba(58,90,64,.15)}100%{box-shadow:0 0 0 0 rgba(58,90,64,.0)}}
+
+/* Mobile “cards” mode for table rows */
+@media (max-width:680px){
+  .hero h1{font-size:1.6rem}
+  .section-title{font-size:1.2rem}
+  .tabs .tab{flex:1 1 auto;text-align:center}
+
+  table thead, table tfoot{display:none}
+  table, .table-wrap{border:none}
+  #inviteesTable tbody{display:grid;gap:.75rem;padding:0}
+  #inviteesTable tr{
+    display:grid;grid-template-columns:1fr 1fr;gap:.35rem .5rem;
+    border:1px solid #e6e8ea;border-radius:12px;padding:.75rem .85rem;background:#fff
+  }
+  #inviteesTable tr.checked-in{background:var(--checked-bg);border-color:var(--checked-border);box-shadow:none}
+  #inviteesTable td{display:flex;gap:.5rem;align-items:center;white-space:normal;border:none;padding:.25rem 0}
+  #inviteesTable td::before{content:attr(data-label);font-weight:700;min-width:6.5rem}
+  #inviteesTable td[data-label="Name"], #inviteesTable td[data-label="Notes"]{grid-column:1 / -1}
+  input.cin{width:26px;height:26px}
+  .tools{gap:.4rem}
+  .pill{font-size:.8rem}
+}
+
+/* Modal D: Contact-card style with avatar hole */
+dialog::backdrop{background:rgba(0,0,0,.35)}
+dialog#guestModal{border:none;border-radius:18px;padding:0;width:min(520px,92vw);box-shadow:0 18px 40px rgba(0,0,0,.18);overflow:hidden;background:#fff;animation:pop .15s ease}
+@keyframes pop{from{transform:translateY(8px) scale(.98);opacity:0}to{transform:none;opacity:1}}
+.modal-head{display:flex;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid #eef0f2;background:#f9fbfb}
+.modal-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--sage),var(--cream));display:grid;place-items:center;color:#2a3b2e;font-weight:700}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.15rem;letter-spacing:.2px;margin-right:auto}
+.modal-close{border:none;background:#f1f4f6;color:#222;border-radius:10px;width:34px;height:34px;display:grid;place-items:center;cursor:pointer}
+.modal-wrap{padding:12px 16px 16px}
+.form-grid{display:grid;gap:10px}
+@media (min-width:640px){ .form-grid{grid-template-columns:1fr 1fr} }
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.92rem;font-weight:600;color:#2b2b2b}
+.field input,.field select{padding:12px 12px;border:1px solid #d7dbde;border-radius:12px;font:inherit;background:#fff;transition:box-shadow .15s,border-color .15s}
+.field input::placeholder{color:#a1a7ae}
+.field input:focus,.field select:focus{outline:none;border-color:#3a5a40;box-shadow:0 0 0 3px rgba(58,90,64,.15)}
+.field--wide{grid-column:1/-1}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
+.btn{padding:12px 16px;border-radius:12px;border:1px solid #d7dbde;background:#f6f7f8;cursor:pointer;font-weight:600}
+.btn.primary{background:#3a5a40;border-color:#3a5a40;color:#fff}
+.btn:active{transform:translateY(1px)}
+
+/* Toast */
+.toast{position:fixed;inset:auto 50% 18px auto;transform:translateX(-50%);background:#1d2b22;color:#fff;padding:.8rem 1rem;border-radius:12px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+footer{padding:1rem;text-align:center;color:#666}
+</style>
+</head>
+<body>
+<header class="container">
+  <a href="events.html" aria-label="Back to Events">← Back to Events</a>
+</header>
+
+<section class="hero">
+  <h1>Ode to Our Elders — Gratitude Gathering</h1>
+  <p>Honorees, past recipients, invitees, RSVPs, meals, and day-of check-in</p>
+</section>
+
+<main class="container">
+  <!-- Tabs -->
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-target="panel-honorees">Honorees (2025)</button>
+    <button class="tab" data-target="panel-past">Past 2 Years</button>
+    <button class="tab" data-target="panel-invitees">Invitees & RSVPs</button>
+  </div>
+
+  <!-- Honorees -->
+  <section id="panel-honorees" class="panel show">
+    <h2 class="section-title">This Year’s Honorees</h2>
+    <div class="grid" id="honoreesGrid"></div>
+  </section>
+
+  <!-- Past honorees -->
+  <section id="panel-past" class="panel">
+    <h2 class="section-title">Past Honorees</h2>
+    <div id="pastWrap"></div>
+  </section>
+
+  <!-- Invitees -->
+  <section id="panel-invitees" class="panel">
+    <h2 class="section-title">Invitees, RSVPs, Meals, Check-In</h2>
+
+    <!-- Sticky tools -->
+    <div class="tools-wrap" id="toolsWrap">
+      <div class="tools" id="toolsInner">
+        <button class="primary" id="btnAddGuestTop">+ Add Guest</button>
+        <input id="searchBox" type="search" placeholder="Search name, role, or note…" enterkeyhint="search" autocomplete="off" autocapitalize="words"/>
+        <select id="filterRSVP" aria-label="Filter by RSVP">
+          <option value="all">All RSVPs</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="pending">Pending</option>
+        </select>
+        <select id="filterMeal" aria-label="Filter by meal">
+          <option value="all">All meals</option>
+        </select>
+        <select id="filterCheckin" aria-label="Filter by check-in">
+          <option value="all">All check-in</option>
+          <option value="in">Checked-in</option>
+          <option value="out">Not checked-in</option>
+        </select>
+        <button class="cta" id="btnExport">Export CSV</button>
+        <button class="ghost" id="btnScanQR" disabled title="QR scan mode coming soon">Scan QR</button>
+        <span class="pill" id="pillChecked">0 checked-in</span>
+        <span class="pill" id="pillNotChecked">0 not checked-in</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="inviteesTable" aria-describedby="table-summary">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Invited As</th>
+            <th>RSVP</th>
+            <th>Meal</th>
+            <th>Notes</th>
+            <th>Checked-In</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7" id="table-summary">
+              Totals: <span id="countYes">0 yes</span> •
+              <span id="countNo">0 no</span> •
+              <span id="countPending">0 pending</span> •
+              <span id="countTotal">0 total</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; 2025 Ode To Our Elders</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast" role="status" aria-live="polite">Guest added</div>
+
+<!-- Add Guest Modal (Style D) -->
+<dialog id="guestModal" aria-modal="true" aria-labelledby="guestTitle">
+  <div class="modal-head">
+    <div class="modal-avatar" aria-hidden="true">+</div>
+    <h3 id="guestTitle" class="modal-title">Add Guest</h3>
+    <button id="guestClose" class="modal-close" aria-label="Close">✕</button>
+  </div>
+
+  <div class="modal-wrap">
+    <form id="guestForm" method="dialog">
+      <div class="form-grid">
+        <div class="field">
+          <label for="guestName">Guest Name</label>
+          <input type="text" id="guestName" required placeholder="Full name" autocomplete="name" autocapitalize="words">
+        </div>
+        <div class="field">
+          <label for="guestOfSelect">Guest Of (optional)</label>
+          <select id="guestOfSelect"></select>
+        </div>
+        <div class="field">
+          <label for="guestRSVP">RSVP</label>
+          <select id="guestRSVP">
+            <option value="yes">Yes</option>
+            <option value="pending">Pending</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="guestMeal">Meal</label>
+          <input type="text" id="guestMeal" placeholder="Chicken / Fish / Veg">
+        </div>
+        <div class="field field--wide">
+          <label for="guestNotes">Notes</label>
+          <input type="text" id="guestNotes" placeholder="Allergies, seating, etc.">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="guestCancel" class="btn">Cancel</button>
+        <button class="btn primary" type="submit">Add</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<script>
+/* ---------- Sample Data (replace with live) ---------- */
+const EVENTS_DB = {
+  "gratitude-gathering": {
+    year: 2026,
+    title: "Ode to Our Elders — Gratitude Gathering",
+    honorees: [
+      { name: "Joseph “Scrapey” Alfred", status: "memoriam", award: "Lifetime Service"},
+      { name: "Edmond Nelson", status: "memoriam", award: "Lifetime Service"  },
+      { name: "Mervin Cruickshank", status: "memoriam", award: "Lifetime Service" },
+      { name: "Mr. Japp", status: "memoriam", award: "Lifetime Service"},
+      { name: "Mr. Ram Danny", status: "memoriam", award: "Lifetime Service"  },
+      { name: "Chris “lil Chris” Valsin Jr.", status: "memoriam", award: "Lifetime Service" },
+      { name: "Ashton “Shorty” Parris", status: "memoriam", award: "Lifetime Service" },
+      { name: "Violet Althea Benjamin", status: "memoriam", award: "Lifetime Service"},
+      { name: "Sturdy “Tony” Brown", status: "memoriam", award: "Lifetime Service"  },
+      { name: "Mr. and Mrs. Jameson", status: "memoriam", award: "Lifetime Service" },
+      
+      { name: "Ulric Brown", status: "alive", award: "Lifetime Service"},
+      { name: "Derek Davis", status: "alive", award: "Lifetime Service"  },
+      { name: "Jeannette Mohammed", status: "alive", award: "Lifetime Service" },
+      { name: "Pepe Deen", status: "alive", award: "Lifetime Service"},
+      { name: "Carmen Arthurton", status: "alive", award: "Lifetime Service"  },
+      { name: "Carlton Dyer", status: "alive", award: "Lifetime Service" },
+      { name: "Eldora Samuel", status: "alive", award: "Lifetime Service" },
+      { name: "Paula Cox", status: "alive", award: "Lifetime Service"},
+      { name: "Ayesha Johnson", status: "alive", award: "Lifetime Service"  },
+      { name: "Gweneth Burt", status: "alive", award: "Lifetime Service" },
+      { name: "Merlyn Hawkins", status: "alive", award: "Lifetime Service"},
+      { name: "Kennedy Adolphin", status: "alive", award: "Lifetime Service"  },
+      { name: "Valentine Cox", status: "alive", award: "Lifetime Service" },
+      { name: "Andre Hospedales", status: "alive", award: "Lifetime Service"},
+      { name: "Derrick Brereton", status: "alive", award: "Lifetime Service"  },
+      { name: "Chester David", status: "alive", award: "Lifetime Service" },
+      { name: "Sylvia Joseph", status: "alive", award: "Lifetime Service" },
+      { name: "Leon Simeon", status: "alive", award: "Lifetime Service"},
+      { name: "Vernon Richards", status: "alive", award: "Lifetime Service"  },
+      { name: "Ian Spooner", status: "alive", award: "Lifetime Service" },
+      { name: "Steve Bernard (Chipper)", status: "alive", award: "Lifetime Service" },
+    ],
+    past: {
+      2025: [
+        { name: "", award: "Lifetime Service" },
+        { name: "", award: "Lifetime Service" }
+      ],
+      2024: [
+        { name: "", award: "Lifetime Service" },
+        { name: "", award: "Lifetime Service" }
+      ]
+    },
+    invitees: [
+      { name:"Ricardo Williams", role:"President", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"Collete Sonson", role:"Member", rsvp:"yes", meal:"Chicken", notes:"" },
+      { name:"Collete Sonson Guest 1", role:"Guest", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"Collete Sonson Guest 2", role:"Guest", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"Joslyn Brereton", role:"Guest", rsvp:"yes", meal:"Chicken", notes:"" },
+      { name:"George Innocent", role:"Guest", rsvp:"yes", meal:"Chicken", notes:"" },
+      { name:"V. Joe-Ann Jack-Cross", role:"Guest", rsvp:"yes", meal:"Chicken", notes:"" },
+      { name:"Merlinda Duplessis", role:"Guest", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"Jasmine Joseph", role:"Volunteer", rsvp:"yes", meal:"Chicken", notes:"" },
+      { name:"Gweneth Burt", role:"Honoree", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"Godfrey Simon", role:"Volunteer", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"Marvin Watts Sr.", role:"Guest", rsvp:"yes", meal:"Fish", notes:"" },
+      { name:"John Charles", role:"Guest", rsvp:"yes", meal:"Chicken", notes:"" }
+    ]
+  }
+};
+
+/* ---------- Router / Data ---------- */
+const params = new URLSearchParams(location.search);
+const eventKey = params.get('event') || 'gratitude-gathering';
+const DATA = structuredClone(EVENTS_DB[eventKey]);
+DATA.invitees.forEach((i, idx)=>{ if(!i.id) i.id = `i_${idx+1}`; });
+
+const LS_CHECKIN_KEY = `checkins:${eventKey}`;
+const LS_DATA_KEY = `invitees:${eventKey}`;
+
+const savedInvitees = loadJSON(LS_DATA_KEY, null);
+if (savedInvitees && Array.isArray(savedInvitees)) {
+  const byId = new Map(DATA.invitees.map(x=>[x.id,x]));
+  savedInvitees.forEach(x=>{ if(!x.id) x.id = `i_${cryptoRandom()}`; byId.set(x.id,x); });
+  DATA.invitees = Array.from(byId.values());
+}
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.target).classList.add('show');
+    updateStickyOffset();
+  });
+});
+
+/* ---------- Honorees / Past ---------- */
+function renderHonorees(){
+  const wrap = document.getElementById('honoreesGrid');
+  wrap.innerHTML = '';
+  DATA.honorees.forEach(h=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="badge ${h.status==='alive'?'alive':'mem'}">${h.status==='alive'?'Alive':'In Memoriam'}</div>
+      <h3 style="margin:.4rem 0 .2rem">${h.name}</h3>
+      <div class="small"><strong>Award:</strong> ${h.award}</div>
+      <p class="small" style="margin-top:.35rem">${h.bio||''}</p>
+      <div class="kv">${(h.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+function renderPast(){
+  const years = Object.keys(DATA.past).sort((a,b)=>b-a);
+  const wrap = document.getElementById('pastWrap');
+  wrap.innerHTML = '';
+  years.forEach(y=>{
+    const sec = document.createElement('section');
+    sec.innerHTML = `
+      <h3 class="section-title" style="margin-top:.5rem">${y}</h3>
+      <div class="grid">
+        ${DATA.past[y].map(p=>`
+          <div class="card">
+            <h4 style="margin-bottom:.25rem">${p.name}</h4>
+            <div class="small"><strong>Award:</strong> ${p.award}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    wrap.appendChild(sec);
+  });
+}
+
+/* ---------- Invitees / Filters / Check-in ---------- */
+const tbody = document.querySelector('#inviteesTable tbody');
+const searchBox = document.getElementById('searchBox');
+const filterRSVP = document.getElementById('filterRSVP');
+const filterMeal = document.getElementById('filterMeal');
+const filterCheckin = document.getElementById('filterCheckin');
+const countYes = document.getElementById('countYes');
+const countNo = document.getElementById('countNo');
+const countPending = document.getElementById('countPending');
+const countTotal = document.getElementById('countTotal');
+const pillChecked = document.getElementById('pillChecked');
+const pillNotChecked = document.getElementById('pillNotChecked');
+
+function uniqueMeals(){ const s=new Set(); DATA.invitees.forEach(i=>{if(i.meal) s.add(i.meal)}); return [...s]; }
+function buildMealFilter(){
+  filterMeal.innerHTML = `<option value="all">All meals</option>` + uniqueMeals().map(m=>`<option value="${escapeHTML(m)}">${escapeHTML(m)}</option>`).join('');
+}
+function loadCheckins(){ return loadJSON(LS_CHECKIN_KEY, {}); }
+function saveCheckins(map){ localStorage.setItem(LS_CHECKIN_KEY, JSON.stringify(map)); }
+
+function applyFilters(){
+  const q = (searchBox.value||'').toLowerCase().trim();
+  const rsvp = filterRSVP.value;
+  const meal = filterMeal.value;
+  const cin = filterCheckin.value;
+  const checkins = loadCheckins();
+
+  const rows = DATA.invitees.filter(i=>{
+    const matchesQ = !q || [i.name,i.role,i.notes].join(' ').toLowerCase().includes(q);
+    const matchesR = rsvp==='all' || (i.rsvp||'').toLowerCase()===rsvp;
+    const matchesM = meal==='all' || (i.meal||'')===meal;
+    const isIn = !!checkins[i.id]?.checked;
+    const matchesC = (cin==='all') || (cin==='in' && isIn) || (cin==='out' && !isIn);
+    return matchesQ && matchesR && matchesM && matchesC;
+  });
+
+  const yes = DATA.invitees.filter(i=>(i.rsvp||'').toLowerCase()==='yes').length;
+  const no = DATA.invitees.filter(i=>(i.rsvp||'').toLowerCase()==='no').length;
+  const pending = DATA.invitees.filter(i=>(i.rsvp||'').toLowerCase()==='pending').length;
+  countYes.textContent = `${yes} yes`;
+  countNo.textContent = `${no} no`;
+  countPending.textContent = `${pending} pending`;
+  countTotal.textContent = `${DATA.invitees.length} total`;
+
+  const checkedCount = DATA.invitees.reduce((n,i)=> n + (checkins[i.id]?.checked?1:0), 0);
+  const notCheckedCount = DATA.invitees.length - checkedCount;
+  pillChecked.textContent = `${checkedCount} checked-in`;
+  pillNotChecked.textContent = `${notCheckedCount} not checked-in`;
+
+  tbody.innerHTML = rows.map(i=>{
+    const ci = checkins[i.id]||{};
+    const rowClass = ci.checked ? 'checked-in' : '';
+    return `
+      <tr data-id="${i.id}" class="${rowClass}">
+        <td data-label="Name">${escapeHTML(i.name)}</td>
+        <td data-label="Invited As">${escapeHTML(i.role||'')}</td>
+        <td data-label="RSVP">${escapeHTML(i.rsvp||'')}</td>
+        <td data-label="Meal">${escapeHTML(i.meal||'')}</td>
+        <td data-label="Notes">${escapeHTML(i.notes||'')}</td>
+        <td data-label="Checked-In"><input type="checkbox" class="cin" ${ci.checked?'checked':''} aria-label="Check in ${escapeHTML(i.name)}"></td>
+        <td data-label="Time" class="ctime">${escapeHTML(ci.time||'')}</td>
+      </tr>
+    `;
+  }).join('');
+
+  tbody.querySelectorAll('input.cin').forEach(box=> box.addEventListener('change', onToggleCheckin));
+}
+
+function onToggleCheckin(e){
+  const tr = e.target.closest('tr'); const id = tr?.getAttribute('data-id'); if(!id) return;
+  const checkins = loadCheckins(); const now = new Date();
+  if(e.target.checked){ checkins[id] = {checked:true, time: formatTime(now)}; tr.classList.add('checked-in'); }
+  else{ checkins[id] = {checked:false, time:''}; tr.classList.remove('checked-in'); }
+  saveCheckins(checkins);
+  tr.querySelector('.ctime').textContent = checkins[id].time || '';
+  const cCount = Object.values(checkins).filter(x=>x.checked).length;
+  pillChecked.textContent = `${cCount} checked-in`;
+  pillNotChecked.textContent = `${DATA.invitees.length - cCount} not checked-in`;
+}
+
+/* ---------- CSV ---------- */
+function exportCSV(){
+  const headers = ["Name","Invited As","RSVP","Meal","Notes","Checked_In","Checked_In_Time"];
+  const lines = [headers.join(",")];
+  const checkins = loadCheckins();
+  DATA.invitees.forEach(i=>{
+    const ci = checkins[i.id]||{};
+    const row = [i.name,i.role||'',i.rsvp||'',i.meal||'',i.notes||'',ci.checked?'Yes':'No',ci.time||''].map(csvCell);
+    lines.push(row.join(","));
+  });
+  downloadCSV(`${slugify(DATA.title)}-invitees.csv`, lines.join("\n"));
+}
+
+/* ---------- Add Guest (modal) + Toast + Scroll ---------- */
+const btnAddGuestTop = document.getElementById('btnAddGuestTop');
+const guestModal = document.getElementById('guestModal');
+const guestForm = document.getElementById('guestForm');
+const guestClose = document.getElementById('guestClose');
+const guestCancel = document.getElementById('guestCancel');
+const guestName = document.getElementById('guestName');
+const guestRSVP = document.getElementById('guestRSVP');
+const guestMeal = document.getElementById('guestMeal');
+const guestNotes = document.getElementById('guestNotes');
+const guestOfSelect = document.getElementById('guestOfSelect');
+const toast = document.getElementById('toast');
+
+btnAddGuestTop.addEventListener('click', ()=>{
+  populateGuestOf();
+  guestForm.reset();
+  guestRSVP.value = 'yes';
+  guestModal.showModal();
+  setTimeout(()=>guestName.focus(), 30);
+});
+guestClose.addEventListener('click', ()=>guestModal.close());
+guestCancel.addEventListener('click', ()=>guestModal.close());
+
+guestForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const name = guestName.value.trim();
+  if(!name){ guestName.focus(); return; }
+  const hostId = guestOfSelect.value || '';
+  const host = DATA.invitees.find(x=>x.id===hostId);
+  const newInvitee = {
+    id: `i_${cryptoRandom()}`,
+    name,
+    role: 'Guest',
+    rsvp: guestRSVP.value,
+    meal: guestMeal.value.trim(),
+    notes: host ? `Guest of ${host.name}` : guestNotes.value.trim()
+  };
+  DATA.invitees.push(newInvitee);
+  persistInvitees();
+  buildMealFilter();
+  applyFilters();
+  guestModal.close();
+
+  // Scroll to and highlight the newly added guest
+  requestAnimationFrame(()=>{
+    const row = [...document.querySelectorAll('#inviteesTable tbody tr')].find(tr=> tr.querySelector('td[data-label="Name"]')?.textContent.trim() === name);
+    if(row){
+      row.classList.add('highlight');
+      row.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(()=>row.classList.remove('highlight'), 1500);
+    }
+  });
+
+  // Toast
+  showToast('Guest added');
+});
+
+function populateGuestOf(){
+  const opts = ['<option value="">— None —</option>'].concat(
+    DATA.invitees.map(i=>`<option value="${i.id}">${escapeHTML(i.name)}</option>`)
+  );
+  guestOfSelect.innerHTML = opts.join('');
+}
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 1600);
+}
+
+/* ---------- Sticky offset ---------- */
+function updateStickyOffset(){
+  const wrap = document.getElementById('toolsWrap');
+  const h = wrap ? wrap.getBoundingClientRect().height : 64;
+  document.documentElement.style.setProperty('--toolsH', `${Math.ceil(h)}px`);
+}
+window.addEventListener('resize', updateStickyOffset);
+window.addEventListener('orientationchange', updateStickyOffset);
+
+/* ---------- Utils ---------- */
+function csvCell(v){ const s=String(v??'').replaceAll('"','""'); return /[",\n]/.test(s)?`"${s}"`:s; }
+function downloadCSV(filename, content){
+  const blob = new Blob([content],{type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download=filename;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+function escapeHTML(s){ return String(s??'').replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
+function formatTime(d){
+  const dt = new Intl.DateTimeFormat(undefined,{year:'numeric',month:'2-digit',day:'2-digit'});
+  const tt = new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit'});
+  return `${dt.format(d)} ${tt.format(d)}`;
+}
+function slugify(s){ return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+function cryptoRandom(){ if(window.crypto?.getRandomValues){ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0].toString(36);} return Math.floor(Math.random()*1e9).toString(36); }
+function loadJSON(key, fallback){ try{ const raw=localStorage.getItem(key); if(!raw) return fallback; return JSON.parse(raw);}catch{ return fallback; } }
+function persistInvitees(){ localStorage.setItem(LS_DATA_KEY, JSON.stringify(DATA.invitees)); }
+
+/* ---------- Wiring ---------- */
+document.getElementById('btnExport').addEventListener('click', exportCSV);
+searchBox.addEventListener('input', applyFilters);
+filterRSVP.addEventListener('change', applyFilters);
+filterMeal.addEventListener('change', applyFilters);
+filterCheckin.addEventListener('change', applyFilters);
+
+/* ---------- Init ---------- */
+document.title = `${DATA.title} — Ode To Our Elders`;
+renderHonorees();
+renderPast();
+buildMealFilter();
+applyFilters();
+updateStickyOffset();
+
+/* ---------- QR Scan Mode: placeholder (enabled later) ---------- */
+// When ready to implement, replace placeholder by hooking a camera scanner (e.g., BarcodeDetector / jsQR)
+// and use check-in state to mark guests as scanned.
+</script>
+</body>
+</html>
