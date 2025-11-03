@@ -247,6 +247,37 @@
   cursor: pointer;
 }
 
+/* ===== Spotlight styles ===== */
+.spotlight { padding: 2rem; }
+.spotlight-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1.8fr;
+  gap: 1.25rem;
+  border: 2px solid var(--sage);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.spotlight-media {
+  min-height: 240px;
+  background:
+    linear-gradient(135deg, rgba(58,90,64,.75), rgba(156,175,136,.75)),
+    url('https://images.unsplash.com/photo-1521337706268-0f3b3d2b1d5e?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat;
+}
+.spotlight-body { padding: 1.25rem 1.25rem 1.5rem; }
+.spotlight-body h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: .35rem; }
+.spotlight-body p { margin: .25rem 0 .75rem; line-height: 1.5; }
+.spotlight-meta { list-style: none; display: flex; flex-wrap: wrap; gap: 1rem; margin: 0 0 1rem; padding: 0; }
+@media (max-width: 820px){
+  .spotlight-card { grid-template-columns: 1fr; }
+  .spotlight-media { min-height: 180px; }
+}
+
+
+
+
+
 /* Upcoming Events (Generic Section Cards) */
 section {
   padding: 2rem;
@@ -300,25 +331,45 @@ section h2 {
     </nav>
   </header>
 
+<!-- ===== Spotlight Gala (add just below </header>) ===== -->
+<section class="spotlight">
+  <div class="spotlight-card">
+    <div class="spotlight-media" role="img" aria-label="Ode to Our Elders Gala"></div>
+    <div class="spotlight-body">
+      <h2>Spotlight: Ode to Our Elders — Gratitude Gathering</h2>
+      <p>A formal gala honoring our elders with awards, tributes, and community celebration.</p>
+      <ul class="spotlight-meta">
+        <li><strong>Date:</strong> November 28, 2025</li>
+        <li><strong>Venue:</strong> Baytown Fairgrounds - 7900 N Main St. Baytown TX 77521</li>
+      </ul>
+      <a class="cta-button" href="gala.html?event=gratitude-gathering" aria-label="View Gala details">
+        View Event
+      </a>
+    </div>
+  </div>
+</section>
 
-<!--Events-->
+
+
+<!--Events (uncomment entire section)
+
 <section style="padding: 2rem;">
   <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; margin-bottom: 1rem;">Upcoming Events</h2>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
     
-    <!-- Event 1 -->
+    <!-- Event 1 
     <div style="border: 2px solid var(--sage); border-radius: 10px; padding: 1rem;">
-      <h3 style="color: var(--cta);">Father’s Day Celebration</h3>
-      <p><strong>Date:</strong> May 25, 2025</p>
-      <p><strong>Location:</strong> Houston Community Center</p>
-      <p>Join us for an intergenerational letter-writing event where youth write notes to elders in the community.</p>
+      <h3 style="color: var(--cta);">Ode to Our Elders — Gratitude Gathering</h3>
+      <p><strong>Date:</strong> November 28, 2025</p>
+      <p><strong>Location:</strong> Baytown Fairgrounds - 7900 N Main St. Baytown TX</p>
+      <p>A formal gala honoring our elders with awards, tributes, and community celebration.</p>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
-        <a href="#" class="cta-button" style="font-size: 0.9rem;">RSVP</a>
+        <a href="#" class="cta-button" style="font-size: 0.9rem;">View Event</a>
         <span style="font-weight: 600;">RSVPs: <span style="color: var(--cta);">23</span></span>
       </div>
-    </div>
+    </div>  -->
 
-    <!-- Event 2 -->
+    <!-- Event 2 
     <div style="border: 2px solid var(--sage); border-radius: 10px; padding: 1rem;">
       <h3 style="color: var(--cta);">Elders Tribute Luncheon</h3>
       <p><strong>Date:</strong> June 21, 2025</p>
@@ -328,16 +379,16 @@ section h2 {
         <a href="#" class="cta-button" style="font-size: 0.9rem;">RSVP</a>
         <span style="font-weight: 600;">RSVPs: <span style="color: var(--cta);">41</span></span>
       </div>
-    </div>
+    </div>  
 
   </div>
-</section>
+</section> -->
 
 
 
 
 
-  <section style="padding: 2rem; background-color: var(--cream); text-align: center;">
+   <!--<section style="padding: 2rem; background-color: var(--cream); text-align: center;">
   <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem;">Community Calendar</h2>
   <div style="
     width: 100%;
@@ -362,7 +413,7 @@ section h2 {
     <span style="color: var(--gold); font-weight: bold;">Gold:</span> Celebrations |
     <span style="color: var(--brown); font-weight: bold;">Brown:</span> Tributes
   </p>
-</section>
+</section> -->
 
 <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; text-align: center; margin-bottom: 1rem;">Event Photo Albums</h2>
 <!--album-->
