@@ -10,19 +10,48 @@
   --gold:#ffb400; --brown:#5c4033; --sage:#9caf88; --cream:#fefae0; --black:#1a1a1a;
   --cta:#3a5a40; --cta-hover:#2e4a34;
   --checked-bg:#e9f5ec; --checked-border:#cfe9d6;
-  --toolsH: 64px;
 }
 
 /* Base */
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',sans-serif;color:var(--black);background:#fff}
 a{color:inherit}
-header{background:var(--cream);padding:1rem 1.25rem}
-header a{font-weight:600;text-decoration:none}
-.hero{background:linear-gradient(135deg,var(--cta),var(--sage));color:#fff;padding:2.25rem 1.25rem;text-align:center}
-.hero h1{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:.35rem}
-.hero p{opacity:.95}
+
+/* ===== Banner + Header (from Home) ===== */
+.banner-section{
+  background:linear-gradient(-45deg,var(--cta),var(--sage),var(--gold));
+  background-size:400% 400%;
+  animation:bannerShift 12s ease infinite;
+  color:#fff;text-align:center;padding:3rem 1rem
+}
+@keyframes bannerShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.banner-section h1{font-family:'Playfair Display',serif;letter-spacing:1px}
+.banner-section .logo-img{
+  width:500px;height:500px;object-fit:cover;border-radius:50%;margin:1rem auto 0;display:block
+}
+@media (max-width:768px){
+  .banner-section .logo-img{width:120px;height:120px}
+}
+
+.site-header{background:var(--cream);padding:1rem 2rem;text-align:center}
+.menu-toggle{display:none;font-size:1.6rem;background:none;border:none;cursor:pointer}
+nav.site-nav{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:center;margin-top:.5rem}
+nav.site-nav a{text-decoration:none;color:var(--black);font-weight:600;transition:color .25s}
+nav.site-nav a:hover{color:var(--gold)}
+nav.site-nav a.active{color:var(--gold);border-bottom:2px solid var(--gold)}
+@media (max-width:768px){
+  .menu-toggle{display:inline-block}
+  nav.site-nav{display:none;flex-direction:column;width:100%;background:var(--cream);margin-top:1rem}
+  nav.site-nav.show{display:flex}
+}
+
+/* Page container + sections */
 .container{max-width:1100px;margin:0 auto;padding:1.25rem}
+.section-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin:1rem 0 .5rem}
 
 /* Tabs */
 .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0 1.25rem}
@@ -31,9 +60,8 @@ header a{font-weight:600;text-decoration:none}
 .panel{display:none}
 .panel.show{display:block;animation:fade .2s ease}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.section-title{font-family:'Playfair Display',serif;font-size:1.4rem;margin:1rem 0 .5rem}
 
-/* Cards (Honorees / Past) */
+/* Cards */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .card{border:1px solid var(--sage);border-radius:12px;padding:1rem;background:#fff}
 .badge{display:inline-block;padding:.2rem .5rem;border-radius:999px;font-size:.75rem;font-weight:700}
@@ -54,11 +82,11 @@ button.ghost{background:#f6f7f8}
 button[disabled]{opacity:.6;cursor:not-allowed}
 .pill{display:inline-block;padding:.4rem .7rem;border-radius:999px;border:1px solid #e0e3e6;font-size:.85rem;background:#f6f7f8}
 
-/* Table (desktop) */
-.table-wrap{overflow:auto;border:1px solid #e6e8ea;border-radius:10px;-webkit-overflow-scrolling:touch}
+/* Table */
+.table-wrap{position:relative;overflow:auto;border:1px solid #e6e8ea;border-radius:10px;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse;background:#fff}
 th,td{padding:.85rem .95rem;border-bottom:1px solid #eef0f2;text-align:left;white-space:nowrap;vertical-align:middle}
-th{background:#f9fbfb;font-weight:700;position: sticky;top: 0; z-index: 5;}
+th{background:#f9fbfb;font-weight:700;position:sticky;top:0;z-index:5}
 tfoot td{font-weight:700}
 tr.checked-in{background:var(--checked-bg)}
 tr.checked-in td{border-bottom-color:var(--checked-border)}
@@ -67,12 +95,9 @@ input.cin{width:24px;height:24px}
 tr.highlight{animation:flash 1.4s ease}
 @keyframes flash{0%{box-shadow:0 0 0 0 rgba(58,90,64,.0)}30%{box-shadow:0 0 0 6px rgba(58,90,64,.15)}100%{box-shadow:0 0 0 0 rgba(58,90,64,.0)}}
 
-/* Mobile “cards” mode for table rows */
+/* Mobile row-cards */
 @media (max-width:680px){
-  .hero h1{font-size:1.6rem}
-  .section-title{font-size:1.2rem}
   .tabs .tab{flex:1 1 auto;text-align:center}
-
   table thead, table tfoot{display:none}
   table, .table-wrap{border:none}
   #inviteesTable tbody{display:grid;gap:.75rem;padding:0}
@@ -89,7 +114,7 @@ tr.highlight{animation:flash 1.4s ease}
   .pill{font-size:.8rem}
 }
 
-/* Modal D: Contact-card style with avatar hole */
+/* Modal (Add Guest) */
 dialog::backdrop{background:rgba(0,0,0,.35)}
 dialog#guestModal{border:none;border-radius:18px;padding:0;width:min(520px,92vw);box-shadow:0 18px 40px rgba(0,0,0,.18);overflow:hidden;background:#fff;animation:pop .15s ease}
 @keyframes pop{from{transform:translateY(8px) scale(.98);opacity:0}to{transform:none;opacity:1}}
@@ -111,21 +136,47 @@ dialog#guestModal{border:none;border-radius:18px;padding:0;width:min(520px,92vw)
 .btn.primary{background:#3a5a40;border-color:#3a5a40;color:#fff}
 .btn:active{transform:translateY(1px)}
 
-/* Toast */
+/* Toast + Footer */
 .toast{position:fixed;inset:auto 50% 18px auto;transform:translateX(-50%);background:#1d2b22;color:#fff;padding:.8rem 1rem;border-radius:12px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;z-index:100}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
 footer{padding:1rem;text-align:center;color:#666}
+
+.back-link{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.5rem .8rem; border:1px solid #d7dbde; border-radius:10px;
+  text-decoration:none; font-weight:600; color:var(--black); background:#fff;
+}
+.back-link:hover{ border-color:var(--cta); color:var(--cta) }
+
 </style>
 </head>
 <body>
-<header class="container">
-  <a href="events.html" aria-label="Back to Events">← Back to Events</a>
+
+<!-- Banner from Home -->
+<section class="banner-section">
+  <h1 style="font-size:2.6rem;margin:0">ODE TO OUR ELDERS</h1>
+  <h2 style="font-weight:400;margin-top:.35rem">Honoring Our Roots. Celebrating Our Legacy.</h2>
+  <img src="https://imgur.com/NRWZ2CN.png" alt="Ode To Our Elders logo" class="logo-img">
+</section>
+
+<!-- Header + Nav from Home -->
+<header class="site-header">
+  <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('nav.site-nav').classList.toggle('show')">☰</button>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="team.html">Our Team</a>
+    <!-- <a href="elders.html">Our Elders</a> -->
+    <a href="events.html" class="active">Events & Memories</a>
+    <a href="contact.html">Get Involved</a>
+    <a href="letters.html">Write a Letter</a>
+    <a href="donate.html" class="cta" style="background:var(--cta);color:#fff;padding:.55rem 1rem;border-radius:8px">Donate Now</a>
+  </nav>
 </header>
 
-<section class="hero">
-  <h1>Ode to Our Elders — Gratitude Gathering</h1>
-  <p>Honorees, past recipients, invitees, RSVPs, meals, and day-of check-in</p>
-</section>
+<div class="container" style="padding-top:.75rem">
+  <a href="events.html" class="back-link" aria-label="Back to Events">← Back to Events</a>
+</div>
+
 
 <main class="container">
   <!-- Tabs -->
@@ -151,7 +202,6 @@ footer{padding:1rem;text-align:center;color:#666}
   <section id="panel-invitees" class="panel">
     <h2 class="section-title">Invitees, RSVPs, Meals, Check-In</h2>
 
-    <!-- Sticky tools -->
     <div class="tools-wrap" id="toolsWrap">
       <div class="tools" id="toolsInner">
         <button class="primary" id="btnAddGuestTop">+ Add Guest</button>
@@ -211,14 +261,13 @@ footer{padding:1rem;text-align:center;color:#666}
 <!-- Toast -->
 <div id="toast" class="toast" role="status" aria-live="polite">Guest added</div>
 
-<!-- Add Guest Modal (Style D) -->
+<!-- Add Guest Modal -->
 <dialog id="guestModal" aria-modal="true" aria-labelledby="guestTitle">
   <div class="modal-head">
     <div class="modal-avatar" aria-hidden="true">+</div>
     <h3 id="guestTitle" class="modal-title">Add Guest</h3>
     <button id="guestClose" class="modal-close" aria-label="Close">✕</button>
   </div>
-
   <div class="modal-wrap">
     <form id="guestForm" method="dialog">
       <div class="form-grid">
@@ -256,55 +305,46 @@ footer{padding:1rem;text-align:center;color:#666}
 </dialog>
 
 <script>
-/* ---------- Sample Data (replace with live) ---------- */
+/* ---------- Sample Data ---------- */
 const EVENTS_DB = {
   "gratitude-gathering": {
     year: 2026,
     title: "Ode to Our Elders — Gratitude Gathering",
     honorees: [
       { name: "Joseph “Scrapey” Alfred", status: "memoriam", award: "Lifetime Service"},
-      { name: "Edmond Nelson", status: "memoriam", award: "Lifetime Service"  },
-      { name: "Mervin Cruickshank", status: "memoriam", award: "Lifetime Service" },
+      { name: "Edmond Nelson", status: "memoriam", award: "Lifetime Service"},
+      { name: "Mervin Cruickshank", status: "memoriam", award: "Lifetime Service"},
       { name: "Mr. Japp", status: "memoriam", award: "Lifetime Service"},
-      { name: "Mr. Ram Danny", status: "memoriam", award: "Lifetime Service"  },
-      { name: "Chris “lil Chris” Valsin Jr.", status: "memoriam", award: "Lifetime Service" },
-      { name: "Ashton “Shorty” Parris", status: "memoriam", award: "Lifetime Service" },
+      { name: "Mr. Ram Danny", status: "memoriam", award: "Lifetime Service"},
+      { name: "Chris “lil Chris” Valsin Jr.", status: "memoriam", award: "Lifetime Service"},
+      { name: "Ashton “Shorty” Parris", status: "memoriam", award: "Lifetime Service"},
       { name: "Violet Althea Benjamin", status: "memoriam", award: "Lifetime Service"},
-      { name: "Sturdy “Tony” Brown", status: "memoriam", award: "Lifetime Service"  },
-      { name: "Mr. and Mrs. Jameson", status: "memoriam", award: "Lifetime Service" },
-      
+      { name: "Sturdy “Tony” Brown", status: "memoriam", award: "Lifetime Service"},
+      { name: "Mr. and Mrs. Jameson", status: "memoriam", award: "Lifetime Service"},
       { name: "Ulric Brown", status: "alive", award: "Lifetime Service"},
-      { name: "Derek Davis", status: "alive", award: "Lifetime Service"  },
-      { name: "Jeannette Mohammed", status: "alive", award: "Lifetime Service" },
+      { name: "Derek Davis", status: "alive", award: "Lifetime Service"},
+      { name: "Jeannette Mohammed", status: "alive", award: "Lifetime Service"},
       { name: "Pepe Deen", status: "alive", award: "Lifetime Service"},
-      { name: "Carmen Arthurton", status: "alive", award: "Lifetime Service"  },
-      { name: "Carlton Dyer", status: "alive", award: "Lifetime Service" },
-      { name: "Eldora Samuel", status: "alive", award: "Lifetime Service" },
+      { name: "Carmen Arthurton", status: "alive", award: "Lifetime Service"},
+      { name: "Carlton Dyer", status: "alive", award: "Lifetime Service"},
+      { name: "Eldora Samuel", status: "alive", award: "Lifetime Service"},
       { name: "Paula Cox", status: "alive", award: "Lifetime Service"},
-      { name: "Ayesha Johnson", status: "alive", award: "Lifetime Service"  },
-      { name: "Gweneth Burt", status: "alive", award: "Lifetime Service" },
+      { name: "Ayesha Johnson", status: "alive", award: "Lifetime Service"},
+      { name: "Gweneth Burt", status: "alive", award: "Lifetime Service"},
       { name: "Merlyn Hawkins", status: "alive", award: "Lifetime Service"},
-      { name: "Kennedy Adolphin", status: "alive", award: "Lifetime Service"  },
-      { name: "Valentine Cox", status: "alive", award: "Lifetime Service" },
+      { name: "Kennedy Adolphin", status: "alive", award: "Lifetime Service"},
+      { name: "Valentine Cox", status: "alive", award: "Lifetime Service"},
       { name: "Andre Hospedales", status: "alive", award: "Lifetime Service"},
-      { name: "Derrick Brereton", status: "alive", award: "Lifetime Service"  },
-      { name: "Chester David", status: "alive", award: "Lifetime Service" },
-      { name: "Sylvia Joseph", status: "alive", award: "Lifetime Service" },
+      { name: "Derrick Brereton", status: "alive", award: "Lifetime Service"},
+      { name: "Chester David", status: "alive", award: "Lifetime Service"},
+      { name: "Sylvia Joseph", status: "alive", award: "Lifetime Service"},
       { name: "Leon Simeon", status: "alive", award: "Lifetime Service"},
-      { name: "Vernon Richards", status: "alive", award: "Lifetime Service"  },
-      { name: "Ian Spooner", status: "alive", award: "Lifetime Service" },
-      { name: "Steve Bernard (Chipper)", status: "alive", award: "Lifetime Service" },
+      { name: "Vernon Richards", status: "alive", award: "Lifetime Service"},
+      { name: "Ian Spooner", status: "alive", award: "Lifetime Service"},
+      { name: "Steve Bernard (Chipper)", status: "alive", award: "Lifetime Service"}
     ],
-    past: {
-      2025: [
-        { name: "", award: "Lifetime Service" },
-        { name: "", award: "Lifetime Service" }
-      ],
-      2024: [
-        { name: "", award: "Lifetime Service" },
-        { name: "", award: "Lifetime Service" }
-      ]
-    },
+    past: { 2025: [{name:"",award:"Lifetime Service"},{name:"",award:"Lifetime Service"}],
+            2024: [{name:"",award:"Lifetime Service"},{name:"",award:"Lifetime Service"}] },
     invitees: [
       { name:"Ricardo Williams", role:"President", rsvp:"yes", meal:"Fish", notes:"" },
       { name:"Collete Sonson", role:"Member", rsvp:"yes", meal:"Chicken", notes:"" },
@@ -323,7 +363,7 @@ const EVENTS_DB = {
   }
 };
 
-/* ---------- Router / Data ---------- */
+/* Router/Data */
 const params = new URLSearchParams(location.search);
 const eventKey = params.get('event') || 'gratitude-gathering';
 const DATA = structuredClone(EVENTS_DB[eventKey]);
@@ -331,7 +371,6 @@ DATA.invitees.forEach((i, idx)=>{ if(!i.id) i.id = `i_${idx+1}`; });
 
 const LS_CHECKIN_KEY = `checkins:${eventKey}`;
 const LS_DATA_KEY = `invitees:${eventKey}`;
-
 const savedInvitees = loadJSON(LS_DATA_KEY, null);
 if (savedInvitees && Array.isArray(savedInvitees)) {
   const byId = new Map(DATA.invitees.map(x=>[x.id,x]));
@@ -339,38 +378,32 @@ if (savedInvitees && Array.isArray(savedInvitees)) {
   DATA.invitees = Array.from(byId.values());
 }
 
-/* ---------- Tabs ---------- */
+/* Tabs */
 document.querySelectorAll('.tab').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
     btn.classList.add('active');
     document.getElementById(btn.dataset.target).classList.add('show');
-    updateStickyOffset();
   });
 });
 
-/* ---------- Honorees / Past ---------- */
+/* Honorees/Past */
 function renderHonorees(){
-  const wrap = document.getElementById('honoreesGrid');
-  wrap.innerHTML = '';
+  const wrap = document.getElementById('honoreesGrid'); wrap.innerHTML = '';
   DATA.honorees.forEach(h=>{
-    const card = document.createElement('div');
-    card.className = 'card';
+    const card = document.createElement('div'); card.className='card';
     card.innerHTML = `
       <div class="badge ${h.status==='alive'?'alive':'mem'}">${h.status==='alive'?'Alive':'In Memoriam'}</div>
       <h3 style="margin:.4rem 0 .2rem">${h.name}</h3>
       <div class="small"><strong>Award:</strong> ${h.award}</div>
-      <p class="small" style="margin-top:.35rem">${h.bio||''}</p>
-      <div class="kv">${(h.tags||[]).map(t=>`<span>${t}</span>`).join('')}</div>
     `;
     wrap.appendChild(card);
   });
 }
 function renderPast(){
   const years = Object.keys(DATA.past).sort((a,b)=>b-a);
-  const wrap = document.getElementById('pastWrap');
-  wrap.innerHTML = '';
+  const wrap = document.getElementById('pastWrap'); wrap.innerHTML='';
   years.forEach(y=>{
     const sec = document.createElement('section');
     sec.innerHTML = `
@@ -380,15 +413,13 @@ function renderPast(){
           <div class="card">
             <h4 style="margin-bottom:.25rem">${p.name}</h4>
             <div class="small"><strong>Award:</strong> ${p.award}</div>
-          </div>
-        `).join('')}
-      </div>
-    `;
+          </div>`).join('')}
+      </div>`;
     wrap.appendChild(sec);
   });
 }
 
-/* ---------- Invitees / Filters / Check-in ---------- */
+/* Invitees / Filters / Check-in */
 const tbody = document.querySelector('#inviteesTable tbody');
 const searchBox = document.getElementById('searchBox');
 const filterRSVP = document.getElementById('filterRSVP');
@@ -468,7 +499,7 @@ function onToggleCheckin(e){
   pillNotChecked.textContent = `${DATA.invitees.length - cCount} not checked-in`;
 }
 
-/* ---------- CSV ---------- */
+/* CSV */
 function exportCSV(){
   const headers = ["Name","Invited As","RSVP","Meal","Notes","Checked_In","Checked_In_Time"];
   const lines = [headers.join(",")];
@@ -481,7 +512,7 @@ function exportCSV(){
   downloadCSV(`${slugify(DATA.title)}-invitees.csv`, lines.join("\n"));
 }
 
-/* ---------- Add Guest (modal) + Toast + Scroll ---------- */
+/* Add Guest + Toast + Scroll */
 const btnAddGuestTop = document.getElementById('btnAddGuestTop');
 const guestModal = document.getElementById('guestModal');
 const guestForm = document.getElementById('guestForm');
@@ -524,9 +555,9 @@ guestForm.addEventListener('submit', (e)=>{
   applyFilters();
   guestModal.close();
 
-  // Scroll to and highlight the newly added guest
   requestAnimationFrame(()=>{
-    const row = [...document.querySelectorAll('#inviteesTable tbody tr')].find(tr=> tr.querySelector('td[data-label="Name"]')?.textContent.trim() === name);
+    const row = [...document.querySelectorAll('#inviteesTable tbody tr')]
+      .find(tr=> tr.querySelector('td[data-label="Name"]')?.textContent.trim() === name);
     if(row){
       row.classList.add('highlight');
       row.scrollIntoView({behavior:'smooth',block:'center'});
@@ -534,7 +565,6 @@ guestForm.addEventListener('submit', (e)=>{
     }
   });
 
-  // Toast
   showToast('Guest added');
 });
 
@@ -551,22 +581,12 @@ function showToast(msg){
   setTimeout(()=>toast.classList.remove('show'), 1600);
 }
 
-/* ---------- Sticky offset ---------- */
-function updateStickyOffset(){
-  const wrap = document.getElementById('toolsWrap');
-  const h = wrap ? wrap.getBoundingClientRect().height : 64;
-  document.documentElement.style.setProperty('--toolsH', `${Math.ceil(h)}px`);
-}
-window.addEventListener('resize', updateStickyOffset);
-window.addEventListener('orientationchange', updateStickyOffset);
-
-/* ---------- Utils ---------- */
+/* Utils */
 function csvCell(v){ const s=String(v??'').replaceAll('"','""'); return /[",\n]/.test(s)?`"${s}"`:s; }
 function downloadCSV(filename, content){
-  const blob = new Blob([content],{type:"text/csv;charset=utf-8;"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href=url; a.download=filename;
-  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  const blob = new Blob([content],{type:"text/csv;charset=utf-8;"}); const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href=url; a.download=filename; document.body.appendChild(a);
+  a.click(); a.remove(); URL.revokeObjectURL(url);
 }
 function escapeHTML(s){ return String(s??'').replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m])); }
 function formatTime(d){
@@ -579,24 +599,16 @@ function cryptoRandom(){ if(window.crypto?.getRandomValues){ const a=new Uint32A
 function loadJSON(key, fallback){ try{ const raw=localStorage.getItem(key); if(!raw) return fallback; return JSON.parse(raw);}catch{ return fallback; } }
 function persistInvitees(){ localStorage.setItem(LS_DATA_KEY, JSON.stringify(DATA.invitees)); }
 
-/* ---------- Wiring ---------- */
+/* Wiring */
 document.getElementById('btnExport').addEventListener('click', exportCSV);
 searchBox.addEventListener('input', applyFilters);
 filterRSVP.addEventListener('change', applyFilters);
 filterMeal.addEventListener('change', applyFilters);
 filterCheckin.addEventListener('change', applyFilters);
 
-/* ---------- Init ---------- */
+/* Init */
 document.title = `${DATA.title} — Ode To Our Elders`;
-renderHonorees();
-renderPast();
-buildMealFilter();
-applyFilters();
-updateStickyOffset();
-
-/* ---------- QR Scan Mode: placeholder (enabled later) ---------- */
-// When ready to implement, replace placeholder by hooking a camera scanner (e.g., BarcodeDetector / jsQR)
-// and use check-in state to mark guests as scanned.
+renderHonorees(); renderPast(); buildMealFilter(); applyFilters();
 </script>
 </body>
 </html>
